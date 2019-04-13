@@ -444,8 +444,8 @@ test_that("can inherit all from single function", {
 
   params <- out$get_field("param")$values
   expect_named(params, "...")
-  expect_match(params, "Arguments passed on to \\code{foo}", fixed = TRUE)
-  expect_match(params, "\\item{x}{x}", fixed = TRUE)
+  expect_match(params, "Arguments passed on to \\code{\\link[=foo]{foo}}", fixed = TRUE)
+  expect_match(params, "\\item{\\code{x}}{x}", fixed = TRUE)
 })
 
 test_that("does not produce multiple ... args", {
@@ -471,7 +471,8 @@ test_that("does not produce multiple ... args", {
   params <- out$get_field("param")$values
   expect_length(params, 2)
   expect_match(params[1], "x")
-  expect_match(params[2], "Arguments passed on to \\code{baz}", fixed = TRUE)
+  expect_match(params[2], "Arguments passed on to \\code{\\link[=baz]{baz}}",
+               fixed = TRUE)
 })
 
 test_that("can inherit dots from several functions", {
@@ -496,9 +497,9 @@ test_that("can inherit dots from several functions", {
 
   params <- out$get_field("param")$values
   expect_named(params, "...")
-  expect_match(params, "Arguments passed on to \\code{foo}, \\code{bar}",
+  expect_match(params, "Arguments passed on to \\code{\\link[=foo]{foo}}, \\code{\\link[=bar]{bar}}",
                fixed = TRUE)
-  expect_match(params, "\\item{x}{x}\n  \\item{z}{z}", fixed = TRUE)
+  expect_match(params, "\\item{\\code{x}}{x}\n  \\item{\\code{z}}{z}", fixed = TRUE)
 })
 
 # inherit everything ------------------------------------------------------
